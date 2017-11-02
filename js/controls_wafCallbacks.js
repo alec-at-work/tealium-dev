@@ -111,7 +111,7 @@ $(document).on('click', '[data-demandbase-clear]', function(e){
 	if (fetchQueryParams['space']) {
 		space = 'space=' + fetchQueryParams['space'];
 	}
-	var newURL = '//analytics-dev.autodesk.com/validation/hubscan.html?' + space + '&clearDemandbase=yes';
+	var newURL = 'https://alec-at-work.github.io/tealium-dev/hubscan.html?' + space + '&clearDemandbase=yes';
 	document.location.href = newURL;
 
 });
@@ -162,7 +162,7 @@ $(document).on('click', '[data-campaign]', function(e){
 
 	};
 	if (params !== '') {
-		var newURL = '//analytics-dev.autodesk.com/validation/hubscan.html?' + space + '&' + params;
+		var newURL = 'https://alec-at-work.github.io/tealium-dev/hubscan.html?' + space + '&' + params;
 		document.location.href = newURL;	
 	}
 
@@ -174,7 +174,7 @@ $(document).on('click', '[data-add-product]', function(e){
 	if (fetchQueryParams['space']) {
 		space = 'space=' + fetchQueryParams['space'];
 	}
-	var newURL = '//analytics-dev.autodesk.com/validation/hubscan.html?' + space + '&addProduct=yes';
+	var newURL = 'https://alec-at-work.github.io/tealium-dev/hubscan.html?' + space + '&addProduct=yes';
 	document.location.href = newURL;
 
 });
@@ -186,7 +186,7 @@ $(document).on('click', '[data-org-search]', function(e){
 	if (fetchQueryParams['space']) {
 		space = 'space=' + fetchQueryParams['space'];
 	}
-	var newURL = '//analytics-dev.autodesk.com/validation/hubscan.html?' + space + '&orgSearch=yes' +
+	var newURL = 'https://alec-at-work.github.io/tealium-dev/hubscan.html?' + space + '&orgSearch=yes' +
 		'&q=test+search';
 	document.location.href = newURL;
 
@@ -198,7 +198,7 @@ $(document).on('click', '[data-au-search]', function(e){
 	if (fetchQueryParams['space']) {
 		space = 'space=' + fetchQueryParams['space'];
 	}
-	var newURL = '//analytics-dev.autodesk.com/validation/hubscan.html?' + space + '&auSearch=yes' + 
+	var newURL = 'https://alec-at-work.github.io/tealium-dev/hubscan.html?' + space + '&auSearch=yes' + 
 		'&full-text=test+search&productName=AutoCAD+Design+Suite&language=English&year=2014';
 	document.location.href = newURL;
 
