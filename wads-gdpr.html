@@ -181,11 +181,14 @@ function adsInfo(event){
 
     if (command === "get-base-data") {
         var anonCookie = getCookie('zzz_dev_gdpr_check'),
-            codifiedAnon = escape(_gidCookie);
+            optCookie = getCookie('zzz_dev_gdpr_opt_in'),
+            codifiedAnon = escape(anonCookie);
+            codifiedOpt = escape(optCookie);
 
         var userAnon = {
             'basic-user' : {
-                'anon' : codifiedAnon
+                'anon' : codifiedAnon,
+                'opt-out' : codifiedOpt
             }
         };
 
@@ -206,10 +209,12 @@ function adsInfo(event){
     }
     else if (typeof command['set-gdpr-base-data'] !== "undefined") {
 
-        var anonCook = command['set-gdpr-base-data']['anon'];
+        var anonCook = command['set-gdpr-base-data']['anon'],
+            optInCook = command['set-gdpr-base-data']['opt-in'];
 
         // set the GDPR Basic cookie for the MAIN DOMAIN
-        setCookie("zzz_dev_gdpr_check", _gaCookie, 90);
+        setCookie("zzz_dev_gdpr_check", anonCook, 90);
+        setCookie("zzz_dev_gdpr_opt_in", optInCook, 90);
 
         var checkSetAnon = getCookie('zzz_dev_gdpr_check');
         
