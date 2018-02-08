@@ -15,8 +15,6 @@
 
 <script>
 
-    alert("WADSSSSSS");
-
     function getParentUrl() {
         var isInIframe = (parent !== window),
             parentUrl = null;
@@ -162,6 +160,7 @@ function setCookie(name,value,days) {
     var cookDom;
     if (detectedDomain === "COM") cookDom = '.autodesk.com';
     else if (detectedDomain === "NET") cookDom = '.autodesk.net';
+    else if (detectedDomain === "OTH") cookDom = '.github.io';
     else return;
 
     if (days) {
