@@ -15,6 +15,8 @@
 
 <script>
 
+    alert("WADSSSSSS");
+
     function getParentUrl() {
         var isInIframe = (parent !== window),
             parentUrl = null;
@@ -217,12 +219,18 @@ function adsInfo(event){
         setCookie("zzz_dev_gdpr_opt_in", optInCook, 90);
 
         var checkSetAnon = getCookie('zzz_dev_gdpr_check');
+
+        alert('about to check if data is set in WADS');
         
         if (checkSetAnon) {
+
+            alert('Data SET IN WADS');
 
             // then Track if a response comes back...
             var hostingUrl = getParentUrl();
             analytics.performance('WADS Execution','3 - Data sent TO WADS', hostingUrl);   
+
+            alert('sending the anon-gpdr-cookie-set-on-wads command');
 
             // communicate back a valid cookie set to put the breadcrumb in
             var anonSet = 'anon-gpdr-cookie-set-on-wads';
