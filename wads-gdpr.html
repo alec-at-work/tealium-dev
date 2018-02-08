@@ -211,6 +211,8 @@ function adsInfo(event){
     }
     else if (typeof command['set-gdpr-base-data'] !== "undefined") {
 
+        alert('received SET command in WADS for GDPR data = ' + JSON.stringify(command['set-gdpr-base-data']));
+
         var anonCook = command['set-gdpr-base-data']['anon'],
             optInCook = command['set-gdpr-base-data']['opt-in'];
 
@@ -220,7 +222,6 @@ function adsInfo(event){
 
         var checkSetAnon = getCookie('zzz_dev_gdpr_check');
 
-        alert('about to check if data is set in WADS');
         
         if (checkSetAnon) {
 
