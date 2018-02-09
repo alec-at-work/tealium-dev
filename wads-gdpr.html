@@ -173,7 +173,7 @@ function setCookie(name,value,days) {
 }
 function clearStorage(index) { var stor = window.localStorage || window.storage || false; if (stor) stor.removeItem(index); };
 function setStorage(index,value) { var stor = window.localStorage || window.storage || false; if (stor) stor.setItem(index,value); };
-function getStorage(index) { var stor = window.localStorage || window.storage || false; if (stor) stor.getItem(index); };
+function getStorage(index) { var stor = window.localStorage || window.storage || false; if (stor) return stor.getItem(index); };
 
 // check for a GDPR check cookie, if not found, delete local storage vals...
 var checkForCheck = getCookie('zzz_dev_gdpr_check');
