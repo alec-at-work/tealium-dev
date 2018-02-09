@@ -176,7 +176,7 @@ function setStorage(index,value) { var stor = window.localStorage || window.stor
 function getStorage(index) { var stor = window.localStorage || window.storage || false; if (stor) stor.getItem(index); };
 
 // check for a GDPR check cookie, if not found, delete local storage vals...
-var checkForCheck = checkCookie('zzz_dev_gdpr_check');
+var checkForCheck = getCookie('zzz_dev_gdpr_check');
 if (!checkForCheck) { 
     clearStorage('dev_gdpr_guid');
     clearStorage('dev_gdpr_opt_in');
