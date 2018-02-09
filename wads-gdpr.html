@@ -171,6 +171,16 @@ function setCookie(name,value,days) {
     else var expires = "";
     document.cookie = name+"="+value+expires+";domain=" + cookDom + "; path=/";
 }
+function clearStorage(index) { var stor = window.localStorage || window.storage || false; if (stor) stor.removeItem(index); };
+function setStorage(index,value) { var stor = window.localStorage || window.storage || false; if (stor) stor.setItem(index,value); };
+function getStorage(index) { var stor = window.localStorage || window.storage || false; if (stor) stor.getItem(index); };
+
+// check for a GDPR check cookie, if not found, delete local storage vals...
+var checkForCheck = checkCookie('zzz_dev_gdpr_check');
+if (!checkForCheck) { 
+    clearStorage('dev_gdpr_guid');
+    clearStorage('dev_gdpr_opt_in');
+}
 
 function adsInfo(event){
 	
@@ -181,8 +191,8 @@ function adsInfo(event){
                     typeof command['wads-timed-out'] !== "undefined" ? true : false;
 
     if (command === "get-base-data") {
-        var anonCookie = getCookie('zzz_dev_gdpr_check'),
-            optCookie = getCookie('zzz_dev_gdpr_opt_in'),
+        var anonCookie = getStorage('dev_gdpr_guid'),
+            optCookie = getStorage('dev_gdpr_opt_in'),
             codifiedAnon = escape(anonCookie);
             codifiedOpt = escape(optCookie);
 
@@ -216,8 +226,14 @@ function adsInfo(event){
             optInCook = command['set-gdpr-base-data']['opt-in'];
 
         // set the GDPR Basic cookie for the MAIN DOMAIN
+        /*
         setCookie("zzz_dev_gdpr_check", anonCook, 90);
         setCookie("zzz_dev_gdpr_opt_in", optInCook, 90);
+        */
+
+        setCookie('zzz_dev_gdpr_check', true, 90);
+        setStorage('dev_gdpr_guid',anonCook);
+        setStorage('dev_gdpr_opt_in',optInCook);
 
         var checkSetAnon = getCookie('zzz_dev_gdpr_check');
 
