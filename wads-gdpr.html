@@ -191,8 +191,8 @@ function adsInfo(event){
                     typeof command['wads-timed-out'] !== "undefined" ? true : false;
 
     if (command === "get-base-data") {
-        var anonCookie = getStorage('dev_gdpr_guid'),
-            optCookie = getStorage('dev_gdpr_opt_in'),
+        var anonCookie = getStorage('dev_gdpr_guid') || false,
+            optCookie = getStorage('dev_gdpr_opt_in') || false,
             codifiedAnon = escape(anonCookie);
             codifiedOpt = escape(optCookie);
 
