@@ -220,7 +220,7 @@ function adsInfo(event){
     }
     else if (typeof command['set-gdpr-base-data'] !== "undefined") {
 
-        alert('received SET command in WADS for GDPR data = ' + JSON.stringify(command['set-gdpr-base-data']));
+        // alert('received SET command in WADS for GDPR data = ' + JSON.stringify(command['set-gdpr-base-data']));
 
         var anonCook = command['set-gdpr-base-data']['anon'],
             optInCook = command['set-gdpr-base-data']['opt-in'];
@@ -240,13 +240,13 @@ function adsInfo(event){
         
         if (checkSetAnon) {
 
-            alert('Data SET IN WADS');
+            // alert('Data SET IN WADS');
 
             // then Track if a response comes back...
             var hostingUrl = getParentUrl();
             analytics.performance('WADS Execution','3 - Data sent TO WADS', hostingUrl);   
 
-            alert('sending the anon-gpdr-cookie-set-on-wads command');
+            // alert('sending the anon-gpdr-cookie-set-on-wads command');
 
             // communicate back a valid cookie set to put the breadcrumb in
             var anonSet = 'anon-gpdr-cookie-set-on-wads';
