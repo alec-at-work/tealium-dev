@@ -180,6 +180,7 @@ var checkForCheck = getCookie('zzz_dev_gdpr_check');
 if (!checkForCheck) { 
     clearStorage('dev_gdpr_guid');
     clearStorage('dev_gdpr_opt_in');
+    clearStorage('dev_gdpr_locale');
 }
 
 function adsInfo(event){
@@ -193,13 +194,16 @@ function adsInfo(event){
     if (command === "get-base-data") {
         var anonCookie = getStorage('dev_gdpr_guid') || false,
             optCookie = getStorage('dev_gdpr_opt_in') || false,
-            codifiedAnon = escape(anonCookie);
-            codifiedOpt = escape(optCookie);
+            locale = getStorage('dev_gdpr_locale') || false,
+            codifiedAnon = escape(anonCookie),
+            codifiedOpt = escape(optCookie),
+            codifiedLoc = escape(locale);
 
         var userAnon = {
             'basic-user' : {
                 'anon' : codifiedAnon,
-                'opt-in' : codifiedOpt
+                'opt-in' : codifiedOpt,
+                'locale' : codifiedLoc
             }
         };
 
@@ -223,7 +227,8 @@ function adsInfo(event){
         // alert('received SET command in WADS for GDPR data = ' + JSON.stringify(command['set-gdpr-base-data']));
 
         var anonCook = command['set-gdpr-base-data']['anon'],
-            optInCook = command['set-gdpr-base-data']['opt-in'];
+            optInCook = command['set-gdpr-base-data']['opt-in'],
+            locale = command['set-gdpr-base-data']['locale'];
 
         // set the GDPR Basic cookie for the MAIN DOMAIN
         /*
@@ -234,6 +239,7 @@ function adsInfo(event){
         setCookie('zzz_dev_gdpr_check', true, 90);
         setStorage('dev_gdpr_guid',anonCook);
         setStorage('dev_gdpr_opt_in',optInCook);
+        setStorage('dev_gdpr_locale',locale);
 
         var checkSetAnon = getCookie('zzz_dev_gdpr_check');
 
