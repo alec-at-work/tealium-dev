@@ -42,10 +42,10 @@ function adsInfo(event){
             optCookie = getStorage('ADSK_GDPR_OPT_TYPE') || false,
             optSelects = getStorage('ADSK_GDPR_SELECTS') || false,
             optLength = getStorage('ADSK_GDPR_OPT_LENGTH') || false,
-            codifiedAnon = escape(anonCookie),
-            codifiedOpt = escape(optCookie),
-            codifiedSelects = escape(optSelects),
-            codifiedLength = escape(optLength);
+            codifiedAnon = anonCookie, // escape(anonCookie),
+            codifiedOpt = optCookie, // escape(optCookie),
+            codifiedSelects = optSelects, // escape(optSelects),
+            codifiedLength = optLength; //escape(optLength);
 
         var userAnon = {
             'gdpr-base-data' : {
@@ -95,8 +95,8 @@ function adsInfo(event){
 
 		var _gaCookie = getStorage('ADSK_ANALYTICS_GA'),
             _gidCookie = getCookie('ADSK_ANALYTICS_GID'),
-            codifiedGa = escape(_gaCookie),
-            codifiedGid = escape(_gidCookie);
+            codifiedGa = _gaCookie, // escape(_gaCookie),
+            codifiedGid = _gidCookie; // escape(_gidCookie);
 
 		var userD = {
 			'analytics-data' : {
