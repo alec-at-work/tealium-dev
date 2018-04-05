@@ -24,12 +24,14 @@ function getParentUrl(){return parent!==window?document.referrer:"not hosted in 
 function gdprGuid(){ var S4 = function() { return (((1+Math.random())*0x10000)|0).toString(16).substring(1); }; return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());};
 
 // check for a GDPR check cookie, if not found, delete local storage vals...
+/*
 var checkForCheck = getCookie('zzz_dev_gdpr_check');
 if (!checkForCheck) { 
     clearStorage('ADSK_GDPR_GUID');
     clearStorage('ADSK_GDPR_OPT_TYPE');
     clearStorage('ADSK_GDPR_GEO');
 }
+*/
 
 function adsInfo(event){
 	
@@ -80,7 +82,7 @@ function adsInfo(event){
         setStorage('ADSK_GDPR_OPT_LENGTH', optStoreDuration);
         // setStorage('ADSK_GDPR_GEO', locale);
 
-        var checkSetAnon = getCookie('zzz_dev_gdpr_check');
+        var checkSetAnon = getStorage('ADSK_GDPR_SELECTS');
 
         if (checkSetAnon) {            
             // communicate back a valid cookie set to put the breadcrumb in
@@ -91,8 +93,8 @@ function adsInfo(event){
     }
 	else if (command === "get-analytics-user-data") {
 
-		var _gaCookie = getCookie('_ga'),
-            _gidCookie = getCookie('_gid'),
+		var _gaCookie = getStorage('ADSK_ANALYTICS_GA'),
+            _gidCookie = getCookie('ADSK_ANALYTICS_GID'),
             codifiedGa = escape(_gaCookie),
             codifiedGid = escape(_gidCookie);
 
@@ -113,11 +115,13 @@ function adsInfo(event){
             _gidCookie = command['set-analytics-data']['user_gid'];
 
 		// set the GA cookie on the MAIN DOMAIN
-		setCookie("_ga", _gaCookie, 365 * 2);
-        setCookie("_gid", _gidCookie, 1);
+        setStorage('ADSK_ANALYTICS_GA', _gaCookie);
+        // setStorage('ADSK_ANALYTICS_GID', _gidCookie);
+		// setCookie("_ga", _gaCookie, 365 * 2);
+        setCookie("ADSK_ANALYTICS_GID", _gidCookie, 1);
 
-        var checkSetGa = getCookie('_ga'),
-            checkSetGid = getCookie('_gid');
+        var checkSetGa = getStorage('ADSK_ANALYTICS_GA'),
+            checkSetGid = getCookie('ADSK_ANALYTICS_GID');
         
         if (checkSetGa) {
 
