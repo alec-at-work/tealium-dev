@@ -1,17 +1,18 @@
-
 <!DOCTYPE html>
-
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>ADSK Web Analytics Foundation Cross-Domain Solution</title>
 </head>
 
 <body>
 
 <!-- see Alec Rothman for details -->
 
-<div id="header">
+<div>
 
 	<h2><u>Web Analytics Foundation</u></h2>
-	<h3><b>Analytics Domain Solution (WADS + GDPR)</b></h3>
+	<h3><b>Analytics Domain Solution (WADS)</b></h3>
 
 <script>
 
@@ -24,6 +25,7 @@ function getParentUrl(){return parent!==window?document.referrer:"not hosted in 
 function gdprGuid(){ var S4 = function() { return (((1+Math.random())*0x10000)|0).toString(16).substring(1); }; return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());};
 
 
+// ON LOAD...
 // check for a GDPR Expiry Date, and, if found and PASSED delete local storage vals...
 var expireTime = getStorage('ADSK_GDPR_OPT_LENGTH'),
     currTime = new Date;
@@ -77,12 +79,6 @@ function adsInfo(event){
             optType = command['set-gdpr-base-data']['OPTOUTMULTI_TYPE'],
             optStoreDuration = command['set-gdpr-base-data']['OPTOUTMULTI_LENGTH'];
             // ,locale = command['set-gdpr-base-data']['OPTOUTMULTI_GEO'];
-
-        // set the GDPR Basic cookie for the MAIN DOMAIN
-        /*
-        setCookie("zzz_dev_gdpr_check", anonCook, 90);
-        setCookie("zzz_ADSK_GDPR_OPT_TYPE", optInCook, 90);
-        */
 
         setStorage('ADSK_GDPR_SELECTS', opts);
         setStorage('ADSK_GDPR_GUID', anonCook);
@@ -159,4 +155,6 @@ try {
 
 </script>
 
-</div></body></html>
+</div>
+</body>
+</html>
