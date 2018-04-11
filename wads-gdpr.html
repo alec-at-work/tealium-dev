@@ -23,15 +23,23 @@ function getStorage(index) { var stor = window.localStorage || window.storage ||
 function getParentUrl(){return parent!==window?document.referrer:"not hosted in iFrame"}
 function gdprGuid(){ var S4 = function() { return (((1+Math.random())*0x10000)|0).toString(16).substring(1); }; return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());};
 
-// check for a GDPR check cookie, if not found, delete local storage vals...
-/*
-var checkForCheck = getCookie('zzz_dev_gdpr_check');
-if (!checkForCheck) { 
-    clearStorage('ADSK_GDPR_GUID');
-    clearStorage('ADSK_GDPR_OPT_TYPE');
-    clearStorage('ADSK_GDPR_GEO');
+
+// check for a GDPR Expiry Date, and, if found and PASSED delete local storage vals...
+var expireTime = getStorage('ADSK_GDPR_OPT_LENGTH'),
+    currTime = new Date;
+currTime = currTime.toUTCString();
+if (expireTime) {
+    var ex = new Date(expireTime),
+        ct = new Date(currTime);
+    if (ex <= ct) {
+        clearStorage('ADSK_GDPR_GUID');
+        clearStorage('ADSK_GDPR_OPT_TYPE');
+        clearStorage('ADSK_GDPR_SELECTS');
+        clearStorage('ADSK_GDPR_OPT_LENGTH');
+        // clearStorage('ADSK_GDPR_GEO');
+    }
 }
-*/
+
 
 function adsInfo(event){
 	
